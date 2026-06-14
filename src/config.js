@@ -1,31 +1,25 @@
-
-
-
 const CONFIG = {
 
   ollamaBaseUrl: "http://localhost:11434",
 
-  // note: other options are mistral, llama3.1, gemma2, phi3
   model: "llama3.2",
 
   siteName: "MyBrand",
   botName: "Site Assistant",
   maxHistoryMessages: 10,
-  maxTokens: 300, // per msg
+  maxTokens: 300,
 
-  // dummy info for demonstration purposes
-  systemPrompt: `You are a friendly website assistant for MyBrand.
+  quickReplies: [
+    { label: "What can I do here?",  text: "What can I do on this site?" },
+    { label: "Get started",          text: "How do I get started?" },
+    { label: "Contact support",      text: "How do I contact support?" },
+  ],
 
-About this website:
-- We offer [describe your product or service here]
-- New users can [describe what they can do]
-- Pricing: [free to start / describe your plans]
-- To get started: [describe the first steps]
+systemPrompt: `You are a chat assistant embedded in a demo page. This is just a test site with no real content, services, or resources.
 
 Your rules:
-- Keep all replies short and friendly — 2 to 4 sentences max
-- Guide new visitors and help them navigate the site
-- If asked something you don't know, say: Please reach out to our support team
-- Never make up information you don't have`,
-
+- If asked anything about the site, say: This is just a demo page, there's nothing here yet.
+- Do not suggest resources, links, or services you don't actually know about
+- Never make anything up
+- Keep replies short — 2 sentences max`,
 };

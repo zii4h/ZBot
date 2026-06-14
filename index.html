@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Website</title>
   <link rel="stylesheet" href="styles.css" />
+  <!-- markdown renderer -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 
@@ -21,10 +23,7 @@
   <div class="hero">
     <h1>Dummy page</h1>
     <p>Click the chat bubble at the bottom right. It's fully local.</p>
-    <!-- <button class="btn">Get Started</button> -->
   </div>
-
-<!-- z-bot embed widget -->
 
   <!-- floating bubble button -->
   <button id="cw-bubble-btn" title="Chat with us">
@@ -40,7 +39,30 @@
   <!-- chat panel -->
   <div id="cw-panel">
     <div id="cw-header">
-      <div class="cw-avatar">SVG</div>
+
+      <!-- bot avatar -->
+      <div class="cw-avatar">
+        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="19" cy="19" r="19" fill="url(#av-grad)"/>
+          <!-- head -->
+          <rect x="11" y="9" width="16" height="13" rx="4" fill="white" opacity="0.92"/>
+          <!-- eyes -->
+          <circle cx="15.5" cy="15" r="2" fill="#6c47ff"/>
+          <circle cx="22.5" cy="15" r="2" fill="#6c47ff"/>
+          <!-- antenna -->
+          <line x1="19" y1="9" x2="19" y2="5" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+          <circle cx="19" cy="4.5" r="1.5" fill="white" opacity="0.7"/>
+          <!-- body -->
+          <rect x="13" y="23" width="12" height="7" rx="3" fill="white" opacity="0.7"/>
+          <defs>
+            <linearGradient id="av-grad" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#3f3175"/>
+              <stop offset="1" stop-color="#6f2ee7"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
       <div class="cw-header-info">
         <p class="cw-header-name" id="cw-bot-name">Site Assistant</p>
         <p class="cw-header-status">
@@ -48,12 +70,20 @@
           <span id="cw-status-text">Connecting...</span>
         </p>
       </div>
-      <button id="cw-close">✕</button>
+
+      <div class="cw-header-actions">
+        <button id="cw-clear" title="Clear chat">
+          <svg viewBox="0 0 24 24"><path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+        </button>
+        <button id="cw-close" title="Close">✕</button>
+      </div>
     </div>
 
     <div id="cw-messages">
-      <div class="cw-msg bot" id="cw-welcome-msg">
-        👋 Hi! I'm here to help you navigate this site. What would you like to know?
+      <div class="cw-msg-wrap bot">
+        <div class="cw-msg bot" id="cw-welcome-msg">
+          👋 Hi! I'm here to help you navigate this site. What would you like to know?
+        </div>
       </div>
     </div>
 
@@ -61,20 +91,18 @@
       <span></span><span></span><span></span>
     </div>
 
-    <div id="cw-quick-replies">
-      <button class="cw-qr" onclick="sendQuick('What can I do on this site?')">What can I do here?</button>
-      <button class="cw-qr" onclick="sendQuick('How do I get started?')">Get started</button>
-      <button class="cw-qr" onclick="sendQuick('How do I contact support?')">Contact support</button>
-    </div>
+    <div id="cw-quick-replies"></div>
 
     <div id="cw-input-row">
-      <input id="cw-input" type="text" placeholder="Ask me anything..." />
-      <button id="cw-send">
+      <input id="cw-input" type="text" placeholder="Ask me anything..." autocomplete="off"/>
+      <button id="cw-send" title="Send">
         <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
       </button>
     </div>
 
-    <div id="cw-powered">Requires Ollama installed and running locally. <br/> Setup instructions available in the GitHub README.</div>
+    <div id="cw-powered">
+      Powered by <strong>Ollama</strong> · runs fully on your machine
+    </div>
   </div>
 
   <script src="src/config.js"></script>
